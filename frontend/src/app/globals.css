@@ -1,0 +1,332 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --heritage-terracotta: #B85C38;
+    --heritage-ochre: #C69236;
+    --heritage-forest: #254735;
+    --heritage-sage: #A4AD8A;
+    --heritage-sand: #E6D5B8;
+    --heritage-ivory: #F8F3E8;
+    --heritage-brown: #382A22;
+    --heritage-paper: #FFFCF5;
+    --heritage-muted: #756755;
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --background: 38 50% 94%;
+    --foreground: 24 24% 18%;
+    --border: 35 39% 80%;
+    --input: 35 39% 80%;
+    --ring: 143 30% 21%;
+    --radius: 0.75rem;
+  }
+
+  * { border-color: var(--heritage-sand); }
+  html { scroll-behavior: smooth; }
+  body {
+    position: relative;
+    isolation: isolate;
+    background:
+      radial-gradient(ellipse at 8% 8%, rgba(198, 146, 54, 0.075), transparent 28rem),
+      radial-gradient(ellipse at 94% 33%, rgba(37, 71, 53, 0.055), transparent 30rem),
+      var(--heritage-ivory);
+    color: var(--heritage-brown);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "kern";
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .16;
+    background-image:
+      radial-gradient(circle at center, transparent 0 9px, rgba(184,92,56,.19) 9.5px 10.5px, transparent 11px),
+      linear-gradient(45deg, transparent 46%, rgba(198,146,54,.13) 47% 49%, transparent 50%),
+      linear-gradient(-45deg, transparent 46%, rgba(37,71,53,.10) 47% 49%, transparent 50%);
+    background-size: 42px 42px, 21px 21px, 21px 21px;
+    background-position: 0 0, 0 0, 10px 10px;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif), Georgia, serif;
+    letter-spacing: -.018em;
+    text-wrap: pretty;
+  }
+  h1 { line-height: 1.06; }
+  input, textarea, select, button { font: inherit; }
+  input, textarea, select {
+    color: var(--heritage-brown);
+    border-color: #D7C4A6;
+    background-color: var(--heritage-paper);
+  }
+  input::placeholder, textarea::placeholder { color: #9A8B77; }
+  :focus-visible { outline: 2px solid var(--heritage-terracotta); outline-offset: 2px; }
+  ::selection { background: var(--heritage-sand); color: var(--heritage-brown); }
+  a { text-underline-offset: 3px; }
+}
+
+@layer components {
+  .heritage-header {
+    background: rgba(248, 243, 232, .94);
+    box-shadow: 0 1px 0 rgba(56,42,34,.08), 0 8px 28px rgba(56,42,34,.045);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(198,146,54,.28);
+  }
+  .heritage-brand-mark {
+    position: relative;
+    isolation: isolate;
+    background: var(--heritage-forest);
+    color: var(--heritage-ivory);
+    box-shadow: inset 0 0 0 1px rgba(230,213,184,.45);
+  }
+  .heritage-brand-mark::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(230,213,184,.54);
+    border-radius: 9999px;
+    pointer-events: none;
+  }
+  .heritage-nav-link {
+    position: relative;
+    border: 1px solid transparent;
+    transition: color .18s ease, background .18s ease, border-color .18s ease, transform .18s ease;
+  }
+  .heritage-nav-link:hover { background: rgba(230,213,184,.44); color: var(--heritage-forest); }
+  .heritage-nav-link[aria-current="page"] {
+    color: var(--heritage-forest);
+    background: #E9EBDD;
+    border-color: rgba(37,71,53,.13);
+    font-weight: 650;
+  }
+  .heritage-nav-cta {
+    background: var(--heritage-forest);
+    border: 1px solid var(--heritage-forest);
+    color: var(--heritage-ivory) !important;
+    box-shadow: 0 3px 0 rgba(37,71,53,.12);
+  }
+  .heritage-nav-cta:hover { background: #1D3B2B !important; color: #fff !important; transform: translateY(-1px); }
+  .heritage-card {
+    position: relative;
+    background: var(--heritage-paper);
+    border-color: rgba(198,146,54,.28);
+    box-shadow: 0 1px 0 rgba(56,42,34,.04), 0 9px 24px rgba(56,42,34,.035);
+    transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+  }
+  .heritage-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 1.25rem;
+    right: 1.25rem;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--heritage-ochre), var(--heritage-terracotta), var(--heritage-ochre), transparent);
+    opacity: .68;
+    pointer-events: none;
+  }
+  .heritage-card:hover { border-color: rgba(184,92,56,.32); box-shadow: 0 12px 30px rgba(56,42,34,.065); }
+  .heritage-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: .65rem;
+    color: var(--heritage-terracotta);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    font-size: .68rem;
+    font-weight: 800;
+  }
+  .heritage-kicker::before { content: ""; width: 1.65rem; height: 1px; background: var(--heritage-ochre); }
+  .heritage-rule { height: 1px; background: linear-gradient(90deg, transparent, var(--heritage-sand) 15%, var(--heritage-ochre) 50%, var(--heritage-sand) 85%, transparent); }
+  .heritage-landing, .heritage-login { position: relative; }
+  .heritage-main { position: relative; }
+  .heritage-landing::after, .heritage-login::after {
+    content: "";
+    position: absolute;
+    top: 2.8rem;
+    right: max(1rem, calc((100vw - 80rem) / 2));
+    width: 8rem;
+    height: 8rem;
+    border: 1px solid rgba(198,146,54,.34);
+    border-radius: 9999px;
+    background:
+      radial-gradient(circle at center, transparent 0 21%, rgba(184,92,56,.13) 21.5% 23%, transparent 23.5% 39%, rgba(198,146,54,.18) 39.5% 41%, transparent 41.5% 58%, rgba(37,71,53,.13) 58.5% 60%, transparent 60.5%),
+      repeating-conic-gradient(from 0deg, rgba(37,71,53,.10) 0deg 5deg, transparent 5deg 15deg);
+    opacity: .62;
+    pointer-events: none;
+  }
+  .heritage-hero {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(198,146,54,.32);
+    border-radius: 1.5rem;
+    background: linear-gradient(115deg, rgba(255,252,245,.97), rgba(246,237,218,.94));
+    box-shadow: 0 16px 50px rgba(56,42,34,.055);
+  }
+  .heritage-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 5px;
+    background: linear-gradient(180deg, var(--heritage-terracotta), var(--heritage-ochre), var(--heritage-forest));
+  }
+  .heritage-motif-panel {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--heritage-forest);
+    color: var(--heritage-ivory);
+    border: 1px solid rgba(230,213,184,.36);
+    box-shadow: inset 0 0 0 5px rgba(230,213,184,.08), 0 16px 36px rgba(37,71,53,.16);
+  }
+  .heritage-motif-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: .5;
+    background-image:
+      radial-gradient(circle at center, transparent 0 17px, rgba(230,213,184,.18) 17.5px 18.5px, transparent 19px),
+      linear-gradient(45deg, transparent 47%, rgba(198,146,54,.16) 48% 50%, transparent 51%),
+      linear-gradient(-45deg, transparent 47%, rgba(230,213,184,.12) 48% 50%, transparent 51%);
+    background-size: 48px 48px, 24px 24px, 24px 24px;
+  }
+  .heritage-icon-tile {
+    background: #E9EBDD;
+    color: var(--heritage-forest);
+    border: 1px solid rgba(37,71,53,.11);
+  }
+  .heritage-footer {
+    background: rgba(230,213,184,.22);
+    border-top: 1px solid rgba(198,146,54,.3);
+  }
+  .heritage-stat { border-left: 2px solid var(--heritage-ochre); padding-left: 1rem; }
+  .heritage-table { background: var(--heritage-paper); border: 1px solid rgba(198,146,54,.25); border-radius: .9rem; overflow: hidden; }
+}
+
+/* Keep existing Tailwind markup and its behavior, but tune common surfaces. */
+.bg-white { background-color: var(--heritage-paper); }
+.rounded-lg { border-radius: .8rem; }
+.rounded-md { border-radius: .55rem; }
+input, textarea, select {
+  border-radius: .6rem;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--heritage-forest);
+  box-shadow: 0 0 0 3px rgba(37,71,53,.09);
+}
+button { transition-duration: .18s; }
+table { border-color: rgba(198,146,54,.24); }
+thead { background-color: #F1E7D4; }
+tbody tr { transition: background-color .15s ease; }
+
+/* Quiet ornamental corners for key forms. */
+.heritage-login > .grid > section:first-child,
+.heritage-register-copy { padding-top: 1rem; }
+.heritage-login .heritage-card { border-radius: 1rem; }
+.heritage-login input { min-height: 2.7rem; }
+.heritage-login .demo-account-card { border-radius: 1rem; }
+
+@keyframes reveal { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+.reveal { animation: reveal .42s ease-out both; }
+.animate-in { animation: reveal .25s ease-out both; }
+
+@media (max-width: 640px) {
+  .heritage-landing::after, .heritage-login::after { width: 5rem; height: 5rem; top: .6rem; right: .85rem; opacity: .42; }
+  .heritage-header > div { min-height: 4rem; height: auto; padding-top: .6rem; padding-bottom: .6rem; align-items: flex-start; }
+  .heritage-header nav { flex-wrap: wrap; justify-content: flex-end; gap: .2rem; }
+  .heritage-header nav a { padding: .4rem .55rem; font-size: .75rem; }
+  .heritage-hero { border-radius: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: rgba(230,213,184,.32); }
+::-webkit-scrollbar-thumb { background: #A4AD8A; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #C69236; }
+
+/* Landing-page heirloom geometry: inspired by woven grids and kolam rings. */
+.heritage-medallion {
+  width: min(17rem, 72vw);
+  aspect-ratio: 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(230,213,184,.46);
+  background: radial-gradient(circle, rgba(198,146,54,.14), rgba(248,243,232,.025) 64%, transparent 65%);
+  box-shadow: 0 0 0 10px rgba(230,213,184,.035), 0 0 0 22px rgba(230,213,184,.025);
+}
+.heritage-medallion::before,
+.heritage-medallion::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px solid rgba(198,146,54,.62);
+  transform: rotate(45deg);
+  border-radius: 26%;
+}
+.heritage-medallion::after { inset: 20%; transform: rotate(0deg); border-color: rgba(230,213,184,.38); border-radius: 50%; }
+.heritage-medallion-ring { position: absolute; inset: 7%; border: 1px dashed rgba(230,213,184,.45); border-radius: 50%; }
+.heritage-medallion-ring-one { transform: rotate(22.5deg) scaleX(.72); }
+.heritage-medallion-ring-two { transform: rotate(-22.5deg) scaleX(.72); }
+.heritage-medallion-core {
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #B85C38, #9C492D);
+  border: 1px solid rgba(230,213,184,.78);
+  box-shadow: 0 0 0 7px rgba(198,146,54,.12), 0 10px 22px rgba(0,0,0,.14);
+}
+.heritage-panel-corner { position: absolute; width: 2rem; height: 2rem; border-color: rgba(198,146,54,.72); border-style: solid; pointer-events: none; }
+.heritage-panel-corner-top { top: 1rem; right: 1rem; border-width: 1px 1px 0 0; }
+.heritage-panel-corner-bottom { bottom: 1rem; left: 1rem; border-width: 0 0 1px 1px; }
+.heritage-access-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(198,146,54,.35);
+  background: linear-gradient(115deg, rgba(230,213,184,.55), rgba(255,252,245,.84) 62%, rgba(233,235,221,.74));
+}
+.heritage-access-panel::after {
+  content: "";
+  position: absolute;
+  right: -3rem;
+  bottom: -4rem;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  border: 1px solid rgba(184,92,56,.22);
+  box-shadow: 0 0 0 10px rgba(198,146,54,.055), 0 0 0 22px rgba(37,71,53,.04), 0 0 0 34px rgba(184,92,56,.035);
+  pointer-events: none;
+}
+.heritage-access-panel > * { position: relative; z-index: 1; }
+.heritage-step-card { min-height: 17rem; }
+.heritage-auth-intro {
+  position: relative;
+  padding: clamp(1.4rem, 3vw, 2.5rem);
+  border: 1px solid rgba(198,146,54,.31);
+  border-radius: 1rem;
+  background: linear-gradient(140deg, rgba(233,235,221,.85), rgba(255,252,245,.8));
+}
+.heritage-auth-intro::after {
+  content: "";
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid rgba(198,146,54,.5);
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, rgba(37,71,53,.1) 0deg 10deg, transparent 10deg 30deg);
+  opacity: .65;
+  pointer-events: none;
+}
+.demo-account-card { overflow: hidden; }
+.demo-account-card .heritage-icon-tile { flex-shrink: 0; }
